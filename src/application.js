@@ -29,8 +29,6 @@ export default () => {
     
     const isCurrentActiveFirst = currentActiveIndex === 0;
     
-    currentActiveItem.removeClass("active");
-
     const direction = button.attr('data-slide');
 
     const map = {
