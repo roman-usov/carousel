@@ -2,8 +2,8 @@ The project uses Bootstrap's [Carousel](https://v4-alpha.getbootstrap.com/compon
 
 The slider has two arrows - left and right. Clicking the arrows creates a slide show. If the end is reached, the slide show moves on to the last slide (if the left arrow is clicked with the first slide active) or the first slide (if the right arrow is clicked with the last slide active).
 
-* The `active` class is removed from the current active `.carousel-item`
-* The `active` class is added to the next active `.carousel-item`
+- The `active` class is removed from the current active `.carousel-item`
+- The `active` class is added to the next active `.carousel-item`
 
 ## application.js
 
@@ -13,10 +13,10 @@ The function allows any number of sliders to be used on the page with any number
 
 The implementation is based on JQuery.
 
-* removeClass()
-* addClass()
-* next()
-* prev()
-* first()
-* last()
-* siblings()
+- removeClass()
+- addClass()
+- next()
+- prev()
+- first()
+- last()
+- siblings()

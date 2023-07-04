@@ -1,9 +1,42 @@
 // @ts-check
 
-import $ from 'jquery';
+import $ from "jquery";
 
 export default () => {
   // BEGIN (write your solution here)
+  const carousels = $('[data-ride="carousel"]');
 
+  const handle = (e) => {
+    const clickedEl = $(e.target);
+
+    let button;
+
+    if (clickedEl.is("a") || clickedEl.parent().attr("data-slide")) {
+      button = clickedEl.is("a") ? clickedEl : clickedEl.parent();
+    }
+
+    if (!button) return;
+
+    const carouselEl = button.parent().children().first();
+    const carouselItems = $(".carousel-item", carouselEl);
+    const currentActiveItem = carouselItems.filter(".active");
+    const currentActiveIndex = currentActiveItem.index();
+    const isCurrentActiveLast = currentActiveIndex === carouselItems.length - 1;
+    const isCurrentActiveFirst = currentActiveIndex === 0;
+    currentActiveItem.removeClass("active");
+
+    const targetItem =
+      button.attr("data-slide") === "next"
+        ? isCurrentActiveLast
+          ? carouselItems.first()
+          : currentActiveItem.next()
+        : isCurrentActiveFirst
+        ? carouselItems.last()
+        : currentActiveItem.prev();
+
+    targetItem.addClass("active");
+  };
+
+  carousels.on("click", handle);
   // END
 };
