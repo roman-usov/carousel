@@ -18,23 +18,32 @@ export default () => {
     if (!button) return;
 
     const carouselEl = button.parent().children().first();
+    
     const carouselItems = $(".carousel-item", carouselEl);
+    
     const currentActiveItem = carouselItems.filter(".active");
+    
     const currentActiveIndex = currentActiveItem.index();
+    
     const isCurrentActiveLast = currentActiveIndex === carouselItems.length - 1;
+    
     const isCurrentActiveFirst = currentActiveIndex === 0;
+    
     currentActiveItem.removeClass("active");
 
-    const targetItem =
-      button.attr("data-slide") === "next"
-        ? isCurrentActiveLast
-          ? carouselItems.first()
-          : currentActiveItem.next()
-        : isCurrentActiveFirst
-        ? carouselItems.last()
-        : currentActiveItem.prev();
+    const direction = button.attr('data-slide');
 
-    targetItem.addClass("active");
+    const map = {
+      next: isCurrentActiveLast ? carouselItems.first() : currentActiveItem.next(),
+      prev: isCurrentActiveFirst ? carouselItems.last() : currentActiveItem.prev()
+    }
+
+    const targetItem = map[direction];
+
+    currentActiveItem.removeClass("active");
+
+    targetItem.addClass('active');
+    
   };
 
   carousels.on("click", handle);
